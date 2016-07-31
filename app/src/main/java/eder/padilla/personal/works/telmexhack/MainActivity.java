@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recView.getItemAnimator().setRemoveDuration(800);
         amiguitos = new ArrayList<Amigos>();
         for(int i=0; i<10; i++){
-            amiguitos.add(new Amigos(""));}
+            amiguitos.add(new Amigos("Amigo"));}
         adaptador = new Adaptador(amiguitos,this.getApplicationContext());
         recView.setAdapter(adaptador);
         recView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
