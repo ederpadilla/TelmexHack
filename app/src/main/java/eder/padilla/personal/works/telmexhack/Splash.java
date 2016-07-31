@@ -11,9 +11,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.squareup.picasso.Picasso;
+
 public class Splash extends Activity {
     SharedPreferences sharedPreferences;
     private Thread splashTread;
+    private ImageView fondo;
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         Window window = getWindow();
@@ -26,6 +29,11 @@ public class Splash extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        //fondo=(ImageView)findViewById(R.id.fondo); Picasso.with(this)
+          //      .load(R.drawable.fondo)
+                //.load("https://lh3.googleusercontent.com/gdBHEk-u3YRDtuCU3iDTQ52nZd1t4GPmldYaT26Jh6EhXgp1mlhQiuLFl4eXDAXzDig5=w300")
+            //    .resize(1000, 1500)                        // optional
+              //  .into(fondo);
         StartAnimations();
 
     }
@@ -34,8 +42,11 @@ public class Splash extends Activity {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
         anim.reset();
         LinearLayout l=(LinearLayout) findViewById(R.id.linlay);
+
+
         l.clearAnimation();
         l.startAnimation(anim);
+
         /** We call the animation that says form where to where its gonna move. */
         anim = AnimationUtils.loadAnimation(this, R.anim.translate);
         anim.reset();
@@ -54,7 +65,7 @@ public class Splash extends Activity {
                     /** We check if there is a user log in or not. **/
                     //String unm= sharedPreferences.getString(getResources().getString(R.string.Shared_Preferences_User), null);
 
-                        Intent intent = new Intent(Splash.this, MainActivity.class);
+                        Intent intent = new Intent(Splash.this, LogActivity.class);
                         startActivity(intent);
                         finish();
 

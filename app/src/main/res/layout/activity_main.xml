@@ -20,7 +20,7 @@
             <ImageView
                 android:id="@+id/my_awesome_pager"
                 android:layout_width="match_parent"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/friendsblue"
                 android:layout_height="356dp"
                 app:layout_collapseMode="parallax" />
 

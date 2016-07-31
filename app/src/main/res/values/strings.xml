@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Telmex Hack</string>
     <string name="nombre_persona">Nombre</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="IngresarConFacebook">Ingresar con Facebook</string>
 </resources>
