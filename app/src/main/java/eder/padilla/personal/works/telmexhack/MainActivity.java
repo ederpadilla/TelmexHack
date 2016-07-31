@@ -22,10 +22,10 @@ import java.util.ArrayList;
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    private ImageView dezliablePic;
     private RecyclerView recView;
     private ArrayList<Amigos> amiguitos;
     private Adaptador adaptador;
+    private View fondo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setListeners();
     }
     private void objectInit() {
-        dezliablePic=(ImageView)findViewById(R.id.my_awesome_pager);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         recView = (RecyclerView) findViewById(R.id.RecView);
         recView.setHasFixedSize(true);
         recView.setItemAnimator(new SlideInLeftAnimator());
@@ -54,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recView.setItemAnimator(new DefaultItemAnimator());
     }
     private void setListeners() {
-        dezliablePic.setOnClickListener(this);
         adaptador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,43 +60,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
-    private void seleccionarGaleria() {
-        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-        photoPickerIntent.setType("image/*");
-        startActivityForResult(photoPickerIntent, 100);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
-            case 100:
-                if(resultCode == Activity.RESULT_OK){
-                    Uri selectedImage = data.getData();
-                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-                    Cursor cursor = getApplicationContext().getContentResolver().query(
-                            selectedImage, filePathColumn, null, null, null);
-                    cursor.moveToFirst();
-
-                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    String filePath = cursor.getString(columnIndex);
-                    cursor.close();
-
-                    Bitmap yourSelectedImage = BitmapFactory.decodeFile(filePath);
-                    dezliablePic.setImageBitmap(yourSelectedImage);
-                    Log.i("Entramos","a un activity result");
-                }
-                break;
-        }
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.my_awesome_pager:
-                seleccionarGaleria();
-                break;
+
         }
 
     }
